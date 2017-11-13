@@ -1,11 +1,12 @@
-import Mediatheque.*;
+import java.util.*;
 
 
 public class Main
 {
-  public static main(String [] arg)
+  public static void main(String [] arg)
   {
     Mediatheque Beauf = new Mediatheque();
+    Scanner scan = new Scanner(System.in);
     byte choice = 0;
 
     do

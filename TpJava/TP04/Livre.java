@@ -7,7 +7,7 @@ public class Livre extends Ouvrage
    private String author;
 
 
-   public Class_livre (int new_id, boolean new_isTook, String new_title, String new_author)
+   public Livre (int new_id, boolean new_isTook, String new_title, String new_author)
    {
      super(new_id, new_isTook);   //Constructeur de la classe mère Ouvrage
      title = new_title;

@@ -1,6 +1,6 @@
 
 import java.util.*;
-import Tp.Java.myPackage.Class_StringVector;
+import Java_Swing.myPackage.Class_StringVector;
 
 
 public class ManageClass

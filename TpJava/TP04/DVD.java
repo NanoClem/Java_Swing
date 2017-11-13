@@ -7,7 +7,7 @@ public class DVD extends Ouvrage
    private int minute;
 
 
-   public Class_DVD (int new_id, boolean new_isTook, String new_title, int new_minute)
+   public DVD (int new_id, boolean new_isTook, String new_title, int new_minute)
    {
      super(new_id, new_isTook);
      title = new_title;
