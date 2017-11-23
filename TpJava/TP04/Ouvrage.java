@@ -7,7 +7,7 @@ public class Ouvrage
    protected boolean isTook;
 
 
-   public Class_Ouvrage (int new_id, boolean new_isTook)
+   public Ouvrage (int new_id, boolean new_isTook)
    {
      id = new_id;
      isTook = new_isTook;
