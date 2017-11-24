@@ -2,16 +2,24 @@
 
 import packages.component.TestButton;
 import java.awt.*;
+import javax.swing.*;
 
 
 public class Main
 {
   public static void main(String[] args)
   {
-    // Frame window = new Frame("FractalViz");
-    // window.setSize(400,300);
-    // window.setVisible(true);
+    JFrame window = new JFrame("FractalViz");
+    Container paneContent = window.getContentPane();
 
-    TestButton window = new TestButton("Test button");
+    window.setLocationRelativeTo(null);                         // put the window in center of the physical screen
+    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);      // end the program on closing
+    window.setResizable(false);                                 // resize the window is forbidden
+    window.setSize(400,300);
+
+    // TestButton myButton = new TestButton("Test button");
+    // paneContent.add(myButton);
+
+    window.setVisible(true);
   }
 }

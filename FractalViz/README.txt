@@ -1,10 +1,10 @@
 # Authors : DECOOPMAN Clement, DAMIENS Lucas
 
 
-CONTEXT :
+# CONTEXT :
 
-# The application calculates a Mandelbrot fractal and allows to view it in a graphic interface which is able to make a zoom.
-# The user can choose the number of iterations, zoom in or zoom out and save the result as a picture file.
+- The application calculates a Mandelbrot fractal and allows to view it in a graphic interface which is able to make a zoom.
+- The user can choose the number of iterations, zoom in or zoom out, browse the fractal by dragging the mouse and save the result as a picture file.
 
 
 # PROJECT STRUCTURE :

@@ -1,0 +1,15 @@
+# Steps to achieve in order to fullfill the project :
+
+
+STEP 1 : done
+ -> make a window and show it
+
+
+STEP 2 :
+ -> adapt the TestButton class to Swing
+ -> you should keep Awt only to manage events
+
+
+STEP 3 :
+ -> add a drawing area in the Frame
+ -> draw an example at (0,0) coords to ensure that the drawing is made in function of the drawing area and not the Frame
