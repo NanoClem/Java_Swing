@@ -7,7 +7,7 @@ import java.awt.event.*;
 
 
 public class TestButton extends Frame
-                 implements ActionListener
+                        implements ActionListener
 {
   Button button;
 
