@@ -1,2 +1,12 @@
 # TODO list
 
+
+Ne pas oublier de faire l'appli avec Swing
+Les mécanismes d'évènement se font toujours avec Awt
+
+/!\ les classes de test sont faites avec Awt, ne pas les prendre pour exemple (sauf pour la gestion d'évènements)
+
+
+Réorganisation possible de l'arborescence selon le modèle MVC (Modèle Vue Contrôleur)
+Équivalent des couches logicielles (Persistence Présentation Business)
+
