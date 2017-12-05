@@ -49,7 +49,7 @@ public class GraphicWindow extends JFrame
     JMenuItem blue = new JMenuItem("Bleu");
     color.add(blue);
     color.add(new JSeparator());
-    JMenuItem custom = new JMenuItem("Personnalisee");
+    JMenuItem custom = new JMenuItem("Personnaliser");
     color.add(custom);
 
 
@@ -72,6 +72,8 @@ public class GraphicWindow extends JFrame
     blue.setActionCommand("blue_text");
     blue.addActionListener(this);
 
+    custom.setActionCommand("customised_text");
+    custom.addActionListener(this);
 
 
     // LA FENÊTRE DE TEXTE
@@ -164,16 +166,26 @@ public class GraphicWindow extends JFrame
      }
    }
 
+
    // METTRE LE TEXTE EN NOIR
-   if ( event.getActionCommand().equals("black") )
+   if ( event.getActionCommand().equals("black_text") )
      textPane.setTextStyle(Color.black);
 
-  // METTRE LE TEXTE EN ROUGE
-   if ( event.getActionCommand().equals("red") )
+   // METTRE LE TEXTE EN ROUGE
+   if ( event.getActionCommand().equals("red_text") )
      textPane.setTextStyle(Color.red);
 
-  // METTRE LE TEXTE EN BLEU
-   if ( event.getActionCommand().equals("blue") )
+   // METTRE LE TEXTE EN BLEU
+   if ( event.getActionCommand().equals("blue_text") )
      textPane.setTextStyle(Color.blue);
+
+
+   // Personnaliser la couleur du texte
+   if ( event.getActionCommand().equals("customised_text") )
+   {
+     JColorChooser custom_color = new JColorChooser();
+     Color result = custom_color.showDialog(this, "Couleur personnalisée", Color.black);
+     textPane.setTextStyle(result);
+   }
   }
 }
