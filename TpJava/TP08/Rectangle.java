@@ -1,3 +1,6 @@
+import java.util.*;
+import java.awt.*;
+import javax.swing.*;
 
 
 public class Rectangle extends Forme
@@ -7,14 +10,19 @@ public class Rectangle extends Forme
 
   public Rectangle(int xa, int xb, int ya, int yb, Color c)
   {
-    super("Rectangle");
+    super(c);
     x1 = xa;  x2 = xb;
     y1 = ya;  y2 = yb;
   }
 
   public void Print(Graphics g)
   {
+    g.setColor(color);
     g.fillRect(x1, y1, x2, x2);
-    g.setColor();
+  }
+
+  public void printParam()
+  {
+    System.out.println(color);
   }
 }
