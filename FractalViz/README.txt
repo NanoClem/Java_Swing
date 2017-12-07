@@ -13,11 +13,11 @@ FractalViz
 |
 |__class                             : files produced by compilation of the src files (.class files), can be used to make a .jar without src
 |
-|__libs 	                           : extern librairies used for the project
+|__libs 	                     : extern librairies used for the project (out of the jdk librairies)
 |
 |__src 	                             : source code (.java files)
 |    |__packages                     : personalized classes used in the project
 |        |__component                : classes defined as component in the project, according to the Awt and Swing's heritage hierarchy
-|            |__containers           : classes defined as container in the project (like Frames), according to the Awt and Swing's heritage hierarchy
+|            |__containers           : classes defined as container in the project (like Frames, Panel...), according to the Awt and Swing's heritage hierarchy
 |
 |__README.txt

@@ -1,12 +1,39 @@
 # TODO list
 
-
-Ne pas oublier de faire l'appli avec Swing
-Les mécanismes d'évènement se font toujours avec Awt
-
-/!\ les classes de test sont faites avec Awt, ne pas les prendre pour exemple (sauf pour la gestion d'évènements)
+Member codename :    C = Clément    L = Lucas
 
 
-Réorganisation possible de l'arborescence selon le modèle MVC (Modèle Vue Contrôleur)
-Équivalent des couches logicielles (Persistence Présentation Business)
+[C]
+-> Implanter les deux techniques Python pour disposer de jeux de test
+
+
+[C]
+-> Rédiger un rapport de test (pour le dossier) :
+   - présenter les résultats de vitesse de dessin
+   - précisier si les défauts annoncés sont présent de manière fréquente (faire statistiques si le temps)
+
+
+[C]
+-> Faire le système de zoom sur la fractale
+-> L'action qui déclenchera le zoom sera un glissement de la molette de la souris
+
+[C]
+-> Faire en sorte de pouvoir se déplacer dans la zone de dessin d'image en maintenant la souris et en la déplaçant (BONUS)
+
+
+
+[L]
+-> Modifier les deux algos avec pour y ajouter les dégradés de couleurs (voir le lien sur les algos)
+
+
+[L] : la plupart est déjà fait grâce aux TPs
+-> Faire tous les composants graphiques (fenêtres, panels...) permettant d'acceuillir un DESSIN D'IMAGE (voir doc Oracle)
+-> Respecter le modèle MVC
+-> Ajouter des options : barre de menu, enregistrer un dessin d'image, changer le mode de dégradé de la fractale (voir lien sur les algos)
+-> Ajouter des commandes d'actions pour la barre de menu uniquement
+-> Faire un test de dessin d'image (une forme géométrique simple, ne pas inclure une image)
+
+[L]
+-> Implanter les algorithmes en Java (créer une classe Fractale avec les différents attributs)
+-> dessiner une fractale avec les deux méthodes
 
