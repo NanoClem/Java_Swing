@@ -17,6 +17,8 @@ iteration_max = 50
 img_x         = int( (xmax - xmin) * zoom )
 img_y         = int( (ymax - ymin) * zoom )
 
+dx            = float((xmax - xmin)/img_x)
+dy            = float((ymax - ymin)/img_y)
 
 
 
@@ -39,18 +41,17 @@ for x in range(0,img_x) :
         z_i = 0
         i   = 0
 
-        while True :
-            tmp = z_r
-            z_r = z_r**2 - z_i**2 + c_r
-            z_i = 2 * z_i * tmp + c_i
-            i   += 1
-            if wz_r**2 + z_i**2 >= 4  &  i >= iteration_max :
-                break
+        while z_r**2 + z_i**2 < 4 and i < iteration_max :
+          tmp = z_r
+          z_r = z_r**2 - z_i**2 + c_r
+          z_i = 2*z_i *tmp +c_i
+          i   = i+1
 
         if i == iteration_max :
-            cv.create_line(x,y,x,y)
-
+            cv.create_line(x, y, x, y+1)
+      
     cv.update()
+
 
 w.mainloop()
 
