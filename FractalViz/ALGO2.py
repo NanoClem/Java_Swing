@@ -1,6 +1,7 @@
 #Implantation test Algo 1
 
 from tkinter import *
+import time
 
 
 
@@ -31,6 +32,9 @@ cv.pack()
 
 #PROGRAMME
 
+begin = time.time()
+
+
 for x in range(0,img_x) :
     for y in range(0,img_y) :
         c_r = x / zoom_x + xmin
@@ -51,9 +55,11 @@ for x in range(0,img_x) :
     cv.update()
 
 
+end = time.time()
+print("temps d'exécution : ", end-begin, "s")
+
 w.mainloop()
 
-    
 
         
         
