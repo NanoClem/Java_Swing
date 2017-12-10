@@ -13,7 +13,7 @@ zoom = 100	# pour une distance de 1 sur le plan, on a 100 pixels sur l'image
 
 xmin = -2.1	# intervalle de l'ensemble de Mandelbrot
 xmax = 0.6	# -2.1 < x < 0.6   pour les abscisses
-ymin = -1.2	# -1.2 < y < 1.2   pour les ordonnées (ou les complexes)
+ymin = -1.2	# -1.2 < y < 1.2   pour les ordonnÃ©es (ou les complexes)
 ymax = 1.2
 
 # Calcul de la taille de l'imgage de la fractale

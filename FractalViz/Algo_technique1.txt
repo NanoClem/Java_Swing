@@ -33,8 +33,8 @@ définir image_y = (ymax - ymin) * zoom
 
 Pour x = 0 tant que x < image_x par pas de 1 
     Pour y = 0 tant que y < image_y par pas de 1
-        définir c_r = x / zoom + x1
-        définir c_i = y / zoom + y1
+        définir c_r = x / zoom + xmin	  // partie réelle
+        définir c_i = y / zoom + ymin	  // partie imaginaire
         définir z_r = 0
         définir z_i = 0
         définir i   = 0
