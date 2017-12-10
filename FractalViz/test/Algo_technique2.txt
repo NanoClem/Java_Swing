@@ -2,48 +2,48 @@ source : http://sdz.tdct.org/sdz/dessiner-la-fractale-de-mandelbrot.html
 
 
 # PRINCIPE :
-# définir la zone de dessin et la taille de l'image
-# calculer le zoom en fonction de ces deux paramètres
+# dï¿½finir la zone de dessin et la taille de l'image
+# calculer le zoom en fonction de ces deux paramï¿½tres
 
 # AVANTAGES :
-# L'utilisateur choisi lui-même la taille de l'image
+# L'utilisateur choisi lui-mï¿½me la taille de l'image
 # aucun risque d'avoir une image trop grande ou trop petite
 
-# INCONVÉNIENTS
-# sauf recourt à la première technique, l'image est souvent disproportionnée
+# INCONVï¿½NIENTS
+# sauf recourt ï¿½ la premiï¿½re technique, l'image est souvent disproportionnï¿½e
 
 
 
-// définition de la zone de dessin, ici la fractale en entier
-définir xmin 	      = -2.1
-définir xmax 	      = 0.6
-définir ymin 	      = -1.2
-définir ymax 	      = 1.2
-définir image_x       = 270
-définir image_y       = 240
-définir iteration_max = 50
+// dï¿½finition de la zone de dessin, ici la fractale en entier
+dï¿½finir xmin 	      = -2.1
+dï¿½finir xmax 	      = 0.6
+dï¿½finir ymin 	      = -1.2
+dï¿½finir ymax 	      = 1.2
+dï¿½finir image_x       = 270
+dï¿½finir image_y       = 240
+dï¿½finir iteration_max = 50
 
 // on calcule la taille de l'image :
-définir zoom_x = image_x/(x2 - x1)
-définir zoom_y = image_y/(y2 - y1)
+dï¿½finir zoom_x = image_x/(x2 - x1)
+dï¿½finir zoom_y = image_y/(y2 - y1)
 
 Pour x = 0 tant que x < image_x par pas de 1
     Pour y = 0 tant que y < image_y par pas de 1
-        définir c_r = x / zoom_x + x1
-        définir c_i = y / zoom_y + y1
-        définir z_r = 0
-        définir z_i = 0
-        définir i   = 0
+        dï¿½finir c_r = x / zoom_x + x1
+        dï¿½finir c_i = y / zoom_y + y1
+        dï¿½finir z_r = 0
+        dï¿½finir z_i = 0
+        dï¿½finir i   = 0
 
         Faire
-            définir tmp = z_r
+            dï¿½finir tmp = z_r
             z_r = z_r*z_r - z_i*z_i + c_r
             z_i = 2*z_i*tmp + c_i
             i   = i+1
         Tant que z_r*z_r + z_i*z_i < 4 et i < iteration_max
 
         si i = iteration_max
-            dessiner le pixel de coordonné (x; y)
+            dessiner le pixel de coordonnï¿½ (x; y)
         finSi
     finPour
 finPour

@@ -1,6 +1,7 @@
 #Implantation test Algo 1
 
 from tkinter import *
+from ColorConvert import *
 import time
 
 
@@ -46,7 +47,11 @@ for x in range(0,img_x) :
           i   = i+1
 
         if i == iteration_max :
-            cv.create_line(x, y, x, y+1)
+            cv.create_line(x, y, x, y+1, fill="black")
+        else :
+            color = (0, i*150/iteration_max, i*255/iteration_max)
+            converted_color = ColorRVBHex(color)
+            cv.create_line(x, y, x, y+1, fill=converted_color)
 
     cv.update()
 
