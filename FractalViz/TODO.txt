@@ -7,6 +7,8 @@ Member codename :    C = Clément    L = Lucas
 -> Implanter les deux techniques Python pour disposer de jeux de test
 -> Modifier les deux algos avec pour y ajouter les dégradés de couleurs (voir le lien sur les algos)
 
+[C] :
+-> Implanter une classe Complex pour définir des nombres complexes avec des méthodes permettant d'effectuer des opérations simples (addition, multiplication...)
 
 [C]
 -> Rédiger un rapport de test (pour le dossier) :
