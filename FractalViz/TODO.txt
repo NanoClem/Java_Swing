@@ -3,27 +3,27 @@
 Member codename :    C = Clément    L = Lucas
 
 
-[C]
+[C] : DONE
 -> Implanter les deux techniques Python pour disposer de jeux de test
+-> Modifier les deux algos avec pour y ajouter les dégradés de couleurs (voir le lien sur les algos)
 
 
 [C]
 -> Rédiger un rapport de test (pour le dossier) :
    - présenter les résultats de vitesse de dessin
    - précisier si les défauts annoncés sont présent de manière fréquente (faire statistiques si le temps)
+   - décider quelle technique sera la plus adaptée pour le projet (surtout au niveau du zoom)
 
 
 [C]
 -> Faire le système de zoom sur la fractale
 -> L'action qui déclenchera le zoom sera un glissement de la molette de la souris
 
+
 [C]
 -> Faire en sorte de pouvoir se déplacer dans la zone de dessin d'image en maintenant la souris et en la déplaçant (BONUS)
 
 
-
-[L]
--> Modifier les deux algos avec pour y ajouter les dégradés de couleurs (voir le lien sur les algos)
 
 
 [L] : la plupart est déjà fait grâce aux TPs
