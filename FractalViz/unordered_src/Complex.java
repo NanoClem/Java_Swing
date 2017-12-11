@@ -19,10 +19,21 @@ public class Complex
   }
 
 
+  public double getReal()
+  {return real;}
+
+  public double getImagin()
+  {return imagin;}
+
+  public void setReal(double real)
+  {this.real = real;}
+
+  public void setImagin(double imagin)
+  {this.imagin = imagin;}
+
+
   public void conjugate()   //conjugué du nombre complexe
-  {
-    imagin = -imagin;
-  }
+  {imagin = -imagin;}
 
 
   public Complex sum(Complex c)
