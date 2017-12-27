@@ -12,7 +12,7 @@ public class GraphicWindow extends JFrame
 {
   DrawArea drawPane;
 
-  public GraphicWindow(String s) throws Exception
+  public GraphicWindow(String s, Vector<Integer> xtest, Vector<Integer> ytest) throws Exception
   {
     super(s);
     setSize(600,400);
@@ -53,7 +53,7 @@ public class GraphicWindow extends JFrame
 
 
     // LA FENÊTRE DE DESSIN
-    drwPane = new DrawArea();                            // la fenêtre de dessin
+    drawPane = new DrawArea(s, xtest, ytest);                            // la fenêtre de dessin
     getContentPane().add(drawPane);                      // on l'ajoute avec son contenu dans notre fenêtre graphique
 
     //JScrollPane scrollBar = new JScrollPane(drawPane);   // Barre de scrolling verticale
@@ -82,7 +82,7 @@ public class GraphicWindow extends JFrame
 
 
     // ACTION LORSQUE L'ON CLIQUE SUR "Charger"
-    if ( event.getActionCommand().equals("load") )
+    /*if ( event.getActionCommand().equals("load") )
     {
       JFileChooser select = new JFileChooser();                                                       // Sélecteur de fichier
       select.addChoosableFileFilter( new FileNameExtensionFilter("Pictures Files(.png)", "png") );    // On ne peut sélectionner que les fichiers texte
@@ -140,6 +140,6 @@ public class GraphicWindow extends JFrame
           }
        }
      }
-   }
+   }*/
   }
 }
