@@ -36,12 +36,17 @@ public class Mandelbrot
     double zoom_y             = (double) img_y / (ymax-ymin);
     double c_r, c_i, z_r, z_i;
     c_r = 0;    c_i = 0;
+<<<<<<< HEAD
+=======
+    z_r = 0;    z_i = 0;
+>>>>>>> fec131252e2a434ffec2df654a2e0377803d67b7
 
     for(int x = 0; x < img_x; x++)
       for(int y = 0; y < img_y; y++)
       {
         c_r = (double) x / zoom_x + xmin;
         c_i = (double) y / zoom_y + ymin;
+<<<<<<< HEAD
 		z_r = 0;    z_i = 0;
         int i = 0;
 
@@ -52,6 +57,17 @@ public class Mandelbrot
           z_i  = 2 * z_i * tmp + c_i;
           i    = i + 1;
         }while( (z_r * z_r + z_i * z_i) < 4  &&  i < n );
+=======
+        int i = 0;
+
+        while( Math.pow(z_r, z_r) + Math.pow(z_i, z_i) < 4  &&  i == n )
+        {
+          double tmp = z_r;
+          z_r  = Math.pow(z_r, z_r) - Math.pow(z_i, z_i) + c_r;
+          z_i  = 2 * z_i * tmp + c_i;
+          i   += 1;
+        }
+>>>>>>> fec131252e2a434ffec2df654a2e0377803d67b7
 
         if(i == n)
         {

@@ -53,7 +53,11 @@ public class GraphicWindow extends JFrame
 
 
     // LA FENÊTRE DE DESSIN
+<<<<<<< HEAD:FractalViz/unordered_src/GraphicWindow.java
     drawPane = new DrawArea(s, xtest, ytest);                            // la fenêtre de dessin
+=======
+    drawPane = new DrawArea();                            // la fenêtre de dessin
+>>>>>>> fec131252e2a434ffec2df654a2e0377803d67b7:FractalViz/unordered_src/GraphicWindow.java
     getContentPane().add(drawPane);                      // on l'ajoute avec son contenu dans notre fenêtre graphique
 
     //JScrollPane scrollBar = new JScrollPane(drawPane);   // Barre de scrolling verticale
