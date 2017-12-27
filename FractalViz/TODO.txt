@@ -1,0 +1,41 @@
+# TODO list
+
+Member codename :    C = Clément    L = Lucas
+
+
+[C] : DONE
+-> Implanter les deux techniques Python pour disposer de jeux de test
+-> Modifier les deux algos avec pour y ajouter les dégradés de couleurs (voir le lien sur les algos)
+
+[C] :
+-> Implanter une classe Complex pour définir des nombres complexes avec des méthodes permettant d'effectuer des opérations simples (addition, multiplication...)
+
+[C]
+-> Rédiger un rapport de test (pour le dossier) :
+   - présenter les résultats de vitesse de dessin
+   - précisier si les défauts annoncés sont présent de manière fréquente (faire statistiques si le temps)
+   - décider quelle technique sera la plus adaptée pour le projet (surtout au niveau du zoom)
+
+
+[C]
+-> Faire le système de zoom sur la fractale
+-> L'action qui déclenchera le zoom sera un glissement de la molette de la souris
+
+
+[C]
+-> Faire en sorte de pouvoir se déplacer dans la zone de dessin d'image en maintenant la souris et en la déplaçant (BONUS)
+
+
+
+
+[L] : la plupart est déjà fait grâce aux TPs
+-> Faire tous les composants graphiques (fenêtres, panels...) permettant d'acceuillir un DESSIN D'IMAGE (voir doc Oracle)
+-> Respecter le modèle MVC
+-> Ajouter des options : barre de menu, enregistrer un dessin d'image, changer le mode de dégradé de la fractale (voir lien sur les algos)
+-> Ajouter des commandes d'actions pour la barre de menu uniquement
+-> Faire un test de dessin d'image (une forme géométrique simple, ne pas inclure une image)
+
+[L]
+-> Implanter les algorithmes en Java (créer une classe Fractale avec les différents attributs)
+-> dessiner une fractale avec les deux méthodes
+
