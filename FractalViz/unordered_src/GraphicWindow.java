@@ -17,7 +17,7 @@ public class GraphicWindow extends JFrame
   public GraphicWindow(String s) throws Exception
   {
     super(s);
-    setSize(600,600);
+    setSize(700,700);
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
@@ -69,6 +69,7 @@ public class GraphicWindow extends JFrame
   }
 
 
+
   public int getInputIteration()
   {
     JOptionPane pane = new JOptionPane();
@@ -101,8 +102,8 @@ public class GraphicWindow extends JFrame
     {
       // FRACTALES DE MANDELBROT
       int userIteration = getInputIteration();
-      int width     = 600;
-      int height    = 600;
+      int width     = 700;
+      int height    = 640;
       Mandelbrot myFract = new Mandelbrot(width, height, userIteration);
 
       // LA FENÊTRE DE DESSIN

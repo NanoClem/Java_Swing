@@ -74,9 +74,11 @@ public class Mandelbrot
   {
     BufferedImage WB_fractal = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
     Graphics g = WB_fractal.getGraphics();
+    g.setColor(Color.white);
+    g.fillRect(0, 0, width, height);
 
     for(int coords = 0; coords < pts_x.size(); coords++)
-      WB_fractal.setRGB(pts_x.elementAt(coords), pts_y.elementAt(coords), 255);
+      WB_fractal.setRGB(pts_x.elementAt(coords), pts_y.elementAt(coords), 00);
 
     return WB_fractal;
   }
