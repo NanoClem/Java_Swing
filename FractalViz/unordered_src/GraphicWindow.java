@@ -17,7 +17,7 @@ public class GraphicWindow extends JFrame
   public GraphicWindow(String s) throws Exception
   {
     super(s);
-    setSize(600,400);
+    setSize(600,600);
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
@@ -30,9 +30,12 @@ public class GraphicWindow extends JFrame
     //Les éléments de la barre de menu
     JMenu file = new JMenu("Fichier");
     menuBar.add(file);
+    JMenu draw = new JMenu("Dessin");
+    menuBar.add(draw);
 
 
     //Les items contenus dans les éléments
+
     //FICHIER
     JMenuItem load = new JMenuItem("Charger");
     file.add(load);
@@ -41,6 +44,12 @@ public class GraphicWindow extends JFrame
     file.add(new JSeparator());                          //ligne séparatrice
     JMenuItem quit = new JMenuItem("Quitter");
     file.add(quit);
+
+    //DESSINER
+    JMenuItem drawWB = new JMenuItem("Noir_Blanc");
+    draw.add(drawWB);
+    JMenuItem drawColor = new JMenuItem("Couleur");
+    draw.add(drawColor);
 
 
     // AJOUTS DES ACTION DE CLIC SUR LES ITEMS
@@ -53,31 +62,28 @@ public class GraphicWindow extends JFrame
     save.setActionCommand("save");                       // Lorsque l'on clique sur "Sauver"
     save.addActionListener(this);
 
-
-    // FRACTALES DE MANDELBROT
-    int width     = 270;  // Données de test
-    int height    = 240;  // l'user doit les définir
-    int iteration = 20;   // dans les menus
-
-    Mandelbrot myFract = new Mandelbrot(width, height, iteration);
-
-
-    // LA FENÊTRE DE DESSIN
-    drawPane = new DrawArea(myFract.draw_WB(width, height));                           // la fenêtre de dessin
-    getContentPane().add(drawPane);                      // on l'ajoute avec son contenu dans notre fenêtre graphique
-
-    //JScrollPane scrollBar = new JScrollPane(drawPane);   // Barre de scrolling verticale
-    //getContentPane().add(scrollBar);
-
+    drawWB.setActionCommand("drawWB");
+    drawWB.addActionListener(this);
 
     setVisible(true);
+  }
+
+
+  public int getInputIteration()
+  {
+    JOptionPane pane = new JOptionPane();
+    int iteration = Integer.valueOf( pane.showInputDialog(this,
+              "Saisir le nombre d'itération(s) :",
+              "Combien d'itération(s) ?",
+              JOptionPane.QUESTION_MESSAGE) );
+
+    return iteration;
   }
 
 
 
   public void actionPerformed(ActionEvent event)
   {
-
     // ACTION LORSQUE L'ON CLIQUE SUR "Quitter"
     if ( event.getActionCommand().equals("quit") )                 // si on sélectionne "Quitter"
     {
@@ -88,6 +94,24 @@ public class GraphicWindow extends JFrame
                 pane.YES_NO_OPTION,
                 pane.WARNING_MESSAGE) == JOptionPane.YES_OPTION )  // si on a confirmé
         System.exit(0);                                            // on quitte le programme
+    }
+
+    // ACTION POUR DESSINER LA FRACTALE EN NOIR ET BLANC
+    if ( event.getActionCommand().equals("drawWB") )
+    {
+      // FRACTALES DE MANDELBROT
+      int userIteration = getInputIteration();
+      int width     = 600;
+      int height    = 600;
+      Mandelbrot myFract = new Mandelbrot(width, height, userIteration);
+
+      // LA FENÊTRE DE DESSIN
+      drawPane = new DrawArea(myFract.draw_WB(width, height));
+      getContentPane().add(drawPane);                           // on l'ajoute avec son contenu dans notre fenêtre graphique
+      //JScrollPane scrollBar = new JScrollPane(drawPane);      // Barre de scrolling verticale
+      //getContentPane().add(scrollBar);
+
+      setVisible(true);
     }
 
 
