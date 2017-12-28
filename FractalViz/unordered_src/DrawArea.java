@@ -7,51 +7,32 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 
-public class DrawArea extends JPanel {
+public class DrawArea extends JPanel
+{
+  private BufferedImage img;
 
-  Vector<Integer> xtest;
-  Vector<Integer> ytest;
-
-  public DrawArea(String pic_name, Vector<Integer> x, Vector<Integer> y)
+  public DrawArea(BufferedImage myFract)
   {
     setPreferredSize(new Dimension(300,300) );
-	
-	Vector<Integer> xtest= new Vector<Integer>(x.size());
-    Vector<Integer> ytest= new Vector<Integer>(y.size());
-	
-	xtest = x;
-	ytest = y;
+    img = new BufferedImage(myFract.getWidth(), myFract.getHeight(), BufferedImage.TYPE_INT_RGB );
+    setImg(myFract);
+  }
 
+
+  public void setImg(BufferedImage new_img)
+  {
+    img = new_img;
+  }
+
+  public BufferedImage getImg()
+  {
+    return img;
   }
 
 
   public void paint(Graphics g)
   {
-    Image img = print_fract();
-	g.drawImage(img, 0, 0, this);
+    //BufferedImage drawImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB );
+	  g.drawImage(img, 0, 0, this);
   }
-	
-  public Image print_fract()
-  {
-	BufferedImage fractal= new BufferedImage(270, 240, BufferedImage.TYPE_INT_RGB);
-	Graphics g = fractal.getGraphics();
-	
-	for (int i = 0 ; i<xtest.size() ; i++)
-		for (int j = 0 ; j<ytest.size() ; j++)
-		{
-			g.drawLine(xtest.elementAt(i), ytest.elementAt(j), xtest.elementAt(i), ytest.elementAt(j)+1);
-		}
-		
-	return fractal;
-  }
-
-
-
-
-
-
-
-
-
-
 }

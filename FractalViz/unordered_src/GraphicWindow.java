@@ -3,6 +3,8 @@ import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 
@@ -12,7 +14,7 @@ public class GraphicWindow extends JFrame
 {
   DrawArea drawPane;
 
-  public GraphicWindow(String s, Vector<Integer> xtest, Vector<Integer> ytest) throws Exception
+  public GraphicWindow(String s) throws Exception
   {
     super(s);
     setSize(600,400);
@@ -52,8 +54,16 @@ public class GraphicWindow extends JFrame
     save.addActionListener(this);
 
 
+    // FRACTALES DE MANDELBROT
+    int width     = 270;  // Données de test
+    int height    = 240;  // l'user doit les définir
+    int iteration = 20;   // dans les menus
+
+    Mandelbrot myFract = new Mandelbrot(width, height, iteration);
+
+
     // LA FENÊTRE DE DESSIN
-    drawPane = new DrawArea(s, xtest, ytest);                            // la fenêtre de dessin
+    drawPane = new DrawArea(myFract.draw_WB(width, height));                           // la fenêtre de dessin
     getContentPane().add(drawPane);                      // on l'ajoute avec son contenu dans notre fenêtre graphique
 
     //JScrollPane scrollBar = new JScrollPane(drawPane);   // Barre de scrolling verticale

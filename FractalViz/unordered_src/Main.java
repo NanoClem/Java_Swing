@@ -11,14 +11,8 @@ public class Main
      // test2 = test;
      // test2.printComplex();
 
-     Mandelbrot myFract = new Mandelbrot(270, 240, 100);
-     Vector<Integer> xtest = new Vector<Integer>();
-     xtest = myFract.getPts_x();
-	 Vector<Integer> ytest = new Vector<Integer>();
-	 ytest = myFract.getPts_y();
-	 
-	GraphicWindow window = new GraphicWindow("SEND NUDES", xtest, ytest);
-	 
+	   GraphicWindow window = new GraphicWindow("SEND NUDES");
+
 
      /*for(int i = 0; i < xtest.size(); i++)
 	 {
