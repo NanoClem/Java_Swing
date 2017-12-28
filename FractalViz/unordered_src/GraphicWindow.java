@@ -53,23 +53,27 @@ public class GraphicWindow extends JFrame
 
 
     // AJOUTS DES ACTION DE CLIC SUR LES ITEMS
-    quit.setActionCommand("quit");                       // lorsque l'on clique sur "Quitter"
+    quit.setActionCommand("quit");                       // Clic sur "Quitter"
     quit.addActionListener(this);
 
-    load.setActionCommand("load");                       // lorsque l'on clique sur "Charger"
+    load.setActionCommand("load");                       // Clic sur "Charger"
     load.addActionListener(this);
 
-    save.setActionCommand("save");                       // Lorsque l'on clique sur "Sauver"
+    save.setActionCommand("save");                       // Clic sur "Sauver"
     save.addActionListener(this);
 
-    drawWB.setActionCommand("drawWB");
+    drawWB.setActionCommand("drawWB");                   // Clic sur "Noir_Blanc"
     drawWB.addActionListener(this);
+
+    drawColor.setActionCommand("drawColor");             // Clic sur 'Couleur'
+    drawColor.addActionListener(this);
 
     setVisible(true);
   }
 
 
-
+  // FENETRE D'INPUT POUR LE NOMBRE D'ITERATION
+  // renvoie la valeur entière saisie par l'user
   public int getInputIteration()
   {
     JOptionPane pane = new JOptionPane();
@@ -83,6 +87,7 @@ public class GraphicWindow extends JFrame
 
 
 
+  // ACTIONS
   public void actionPerformed(ActionEvent event)
   {
     // ACTION LORSQUE L'ON CLIQUE SUR "Quitter"
@@ -100,7 +105,7 @@ public class GraphicWindow extends JFrame
     // ACTION POUR DESSINER LA FRACTALE EN NOIR ET BLANC
     if ( event.getActionCommand().equals("drawWB") )
     {
-      // FRACTALES DE MANDELBROT
+      // FRACTALE DE MANDELBROT
       int userIteration = getInputIteration();
       int width     = 700;
       int height    = 640;
@@ -111,6 +116,23 @@ public class GraphicWindow extends JFrame
       getContentPane().add(drawPane);                           // on l'ajoute avec son contenu dans notre fenêtre graphique
       //JScrollPane scrollBar = new JScrollPane(drawPane);      // Barre de scrolling verticale
       //getContentPane().add(scrollBar);
+
+      setVisible(true);
+    }
+
+
+    // ACTION POUR DESSINER LA FRACTALE EN COULEUR
+    if ( event.getActionCommand().equals("drawColor") )
+    {
+      // FRACTALE DE MANDELBROT
+      int userIteration = getInputIteration();
+      int width     = 700;
+      int height    = 640;
+      Mandelbrot myFract = new Mandelbrot(width, height, userIteration);
+
+      // LA FENÊTRE DE DESSIN
+      drawPane = new DrawArea(myFract.draw_Color(width, height));
+      getContentPane().add(drawPane);
 
       setVisible(true);
     }
