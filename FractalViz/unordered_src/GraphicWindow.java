@@ -74,15 +74,69 @@ public class GraphicWindow extends JFrame
 
   // FENETRE D'INPUT POUR LE NOMBRE D'ITERATION
   // renvoie la valeur entière saisie par l'user
+  // si l'user n'a rien saisi, on renvoie une valeur par défaut choisie arbitrairement
   public int getInputIteration()
   {
-    JOptionPane pane = new JOptionPane();
-    int iteration = Integer.valueOf( pane.showInputDialog(this,
-              "Saisir le nombre d'itération(s) :",
-              "Combien d'itération(s) ?",
-              JOptionPane.QUESTION_MESSAGE) );
+    JTextField inputIteration = new JTextField();
+    int iteration = 0;
+
+    int option = JOptionPane.showConfirmDialog(this,
+              inputIteration,
+              "Saisir le nombre d'iteration(s) :",
+              JOptionPane.OK_CANCEL_OPTION);
+
+    if(option == JOptionPane.OK_OPTION)
+    {
+      if( inputIteration.getText().equals("") )
+        iteration = 20;
+      else
+        iteration = Integer.valueOf( inputIteration.getText() );
+    }
 
     return iteration;
+  }
+
+
+  // FENETRE D'INPUT MULTIPLE POUR LA COULEUR
+  // renvoie un tableau contenant les valeures enières RGB choisies
+  // si l'user n'a rien saisi ou si saisie est supérieure à 255, on affecte une valeur par défaut choisie arbitrairement à chaque entier RGB
+  public int[] getInputColor()
+  {
+    int color[] = new int[3];
+    JTextField red   = new JTextField();
+    JTextField green = new JTextField();
+    JTextField blue  = new JTextField();
+
+    Object[] InputColor = {
+      "r :", red,
+      "g :", green,
+      "b :", blue
+    };
+
+    int option = JOptionPane.showConfirmDialog(this,
+                 InputColor,
+                 "Choisissez votre couleur",
+                 JOptionPane.OK_CANCEL_OPTION);
+
+    if(option == JOptionPane.OK_OPTION)
+    {
+      if(red.getText().equals("") ||  Integer.valueOf( red.getText() ) > 255)
+        color[0] = 255;
+      else
+        color[0] = Integer.valueOf( red.getText() );
+
+      if(green.getText().equals("") ||  Integer.valueOf( green.getText() ) > 255)
+        color[1] = 255;
+      else
+        color[1] = Integer.valueOf( green.getText() );
+
+      if(blue.getText().equals("") ||  Integer.valueOf( blue.getText() ) > 255)
+        color[2] = 255;
+      else
+        color[2] = Integer.valueOf( blue.getText() );
+    }
+
+    return color;
   }
 
 
@@ -107,15 +161,14 @@ public class GraphicWindow extends JFrame
     {
       // FRACTALE DE MANDELBROT
       int userIteration = getInputIteration();
-      int width     = 700;
+      int width     = 690;
       int height    = 640;
-      Mandelbrot myFract = new Mandelbrot(width, height, userIteration);
+      Mandelbrot myFract = new Mandelbrot(width, height, userIteration, 255, 255, 255);       // la couleur des points en dehors de l'ensemble n'a aucune incidence pour cette fonction
 
       // LA FENÊTRE DE DESSIN
+      getContentPane().removeAll();                                                           // On éfface le contenu pour éviter la superposition des images
       drawPane = new DrawArea(myFract.draw_WB(width, height));
-      getContentPane().add(drawPane);                           // on l'ajoute avec son contenu dans notre fenêtre graphique
-      //JScrollPane scrollBar = new JScrollPane(drawPane);      // Barre de scrolling verticale
-      //getContentPane().add(scrollBar);
+      getContentPane().add(drawPane);
 
       setVisible(true);
     }
@@ -125,13 +178,16 @@ public class GraphicWindow extends JFrame
     if ( event.getActionCommand().equals("drawColor") )
     {
       // FRACTALE DE MANDELBROT
+      int userColor[] = new int[3];
+      userColor = getInputColor();
       int userIteration = getInputIteration();
-      int width     = 700;
+      int width     = 690;
       int height    = 640;
-      Mandelbrot myFract = new Mandelbrot(width, height, userIteration);
+      Mandelbrot myFract = new Mandelbrot(width, height, userIteration, userColor[0], userColor[1], userColor[2] );
 
       // LA FENÊTRE DE DESSIN
-      drawPane = new DrawArea(myFract.draw_Color(width, height));
+      getContentPane().removeAll();
+      drawPane = new DrawArea(myFract.draw_Color(width, height) );
       getContentPane().add(drawPane);
 
       setVisible(true);
@@ -139,19 +195,24 @@ public class GraphicWindow extends JFrame
 
 
     // ACTION LORSQUE L'ON CLIQUE SUR "Charger"
-    /*if ( event.getActionCommand().equals("load") )
+    if ( event.getActionCommand().equals("load") )
     {
       JFileChooser select = new JFileChooser();                                                       // Sélecteur de fichier
-      select.addChoosableFileFilter( new FileNameExtensionFilter("Pictures Files(.png)", "png") );    // On ne peut sélectionner que les fichiers texte
+      select.addChoosableFileFilter( new FileNameExtensionFilter("Pictures Files(.png)", "png") );    // On ne peut sélectionner que les fichiers image
       int result = select.showOpenDialog(this);                                                       // On affiche une fenêtre de dialog
 
       if(result == JFileChooser.APPROVE_OPTION)                                                       // Si on a confirmé le chargement du fichier
       {
         File choosed_file = new File( select.getSelectedFile().getAbsolutePath() );                   // le fichier choisi avec le chemin complet
+
         try {
-          drawPane.setPage( choosed_file.toURI().toURL() );                                           // on ajoute le contenu du fichier dans la fenêtre de texte
+          BufferedImage img = ImageIO.read(choosed_file);                                             // nouvelle image à partir de celle lue
+          getContentPane().removeAll();
+          drawPane = new DrawArea(img);
+          getContentPane().add(drawPane);                                                             // on ajoute l'image chargée dans la zone de dessin
+          setVisible(true);
         }
-        catch (IOException e) {
+        catch(IOException e) {
           e.printStackTrace();
         }
       }
@@ -162,41 +223,18 @@ public class GraphicWindow extends JFrame
     if( event.getActionCommand().equals("save") )
     {
       JFileChooser save = new JFileChooser();
-      int result = save.showSaveDialog(this);                                   // Nouvelle fenêtre de sauvegarde de fichiers
+      int result = save.showSaveDialog(this);                                     // Nouvelle fenêtre de sauvegarde de fichiers
 
       if(result == JFileChooser.APPROVE_OPTION)
-       {
-         File saved_file = new File( save.getSelectedFile().getAbsolutePath() );
-         String s = saved_file.getPath();                                       // Nom du fichier sauvé
-         int i = s.indexOf(".");                                                // index du caractère "." juste avant l'extension du fichier
-         //String txt = textPane.getText();                                       // contenu de la fenêtre de dessin
-         PrintWriter writer;
-
-         if ( i == -1 || !s.substring(i).equals(".png") )                       // si il n'y a pas de "." en fin de nom ou si le nom n'est pas consittué de ".txt"
-         {
-           try
-           {
-             writer = new PrintWriter( new FileWriter(s + ".txt"), true );      // on écrit un nouveau fichier avec la bonne extension
-             writer.println(txt);                                               // on écrit le texte de la TextArea dans le fichier
-             writer.close();                                                    // fermeture du fichier
-           }
-           catch (IOException e)
-           {
-             e.printStackTrace();
-           }
-         }
-        else                                                                    // Si l'extension est bien ".txt"
         {
-          try {
-            writer = new PrintWriter( new FileWriter(s), true );
-            writer.println(txt);
-            writer.close();
-          }
-          catch (IOException e) {
-            e.printStackTrace();
-          }
+         File saved_file = new File( save.getSelectedFile().getAbsolutePath() );  // Chemin complet du fichier sauvé
+         try {
+           ImageIO.write(drawPane.getImg(), "png", saved_file);                   // On écrit l'image dans un nouveau fichier png
+         }
+         catch(IOException e) {
+           e.printStackTrace();
+         }
        }
-     }
-   }*/
+    }
   }
 }

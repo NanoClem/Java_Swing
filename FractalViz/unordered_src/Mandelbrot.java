@@ -14,38 +14,31 @@ public class Mandelbrot
   private Vector<Integer> pts_out_x;        // sotckage des points
   private Vector<Integer> pts_out_y;        // n'appartenant pas à l'ensemble (pour le dessin en couleur)
 
+  private Vector<Color> pts_out_color;
 
-  public Mandelbrot(int img_x, int img_y, int iteration)
+
+  public Mandelbrot(int img_x, int img_y, int iteration, int r, int g, int b)
   {
-    this.pts_x      = new Vector<Integer>(img_x);
-    this.pts_y      = new Vector<Integer>(img_y);
-    this.pts_out_x  = new Vector<Integer>();        // on ne connait pas à l'avance
-    this.pts_out_y  = new Vector<Integer>();        // les points n'appartenant pas à l'ensemble
-    double xmin     = -2.1;
-    double xmax     = 0.6;
-    double ymin     = -1.2;
-    double ymax     = 1.2;
+    this.pts_x         = new Vector<Integer>(img_x);
+    this.pts_y         = new Vector<Integer>(img_y);
+    this.pts_out_x     = new Vector<Integer>();        // on ne connait pas à l'avance
+    this.pts_out_y     = new Vector<Integer>();        // les points n'appartenant pas à l'ensemble
+    this.pts_out_color = new Vector<Color>();
+    double xmin        = -2.1;
+    double xmax        = 0.6;
+    double ymin        = -1.2;
+    double ymax        = 1.2;
 
-    calcPts(img_x, img_y, xmin, xmax, ymin, ymax, iteration);
+    calcPts(img_x, img_y, xmin, xmax, ymin, ymax, iteration, r, g, b);
     //System.out.println( pts_x.size() + " " + pts_x.isEmpty() );
   }
 
 
-  public Vector<Integer> getPts_x()
-  {return pts_x;}
-
-  public Vector<Integer> getPts_y()
-  {return pts_y;}
-
-  public Vector<Integer> getPts_out_x()
-  {return pts_out_x;}
-
-  public Vector<Integer> getPts_out_y()
-  {return pts_out_y;}
-
-
-
-  public void calcPts(int img_x, int img_y, double xmin, double xmax, double ymin, double ymax, int n)
+ // CALCUL ET STOCKAGE :
+ // - des points appartenant à l'ensemble de Mandelbrot
+ // - des points n'appartenant pas à l'ensemble
+ // - de la couleur des pixels représentés par chaque point en dehors de l'ensemble
+  public void calcPts(int img_x, int img_y, double xmin, double xmax, double ymin, double ymax, int n, int r, int g, int b)
   {
     double zoom_x             = (double) img_x / (xmax-xmin);
     double zoom_y             = (double) img_y / (ymax-ymin);
@@ -76,16 +69,21 @@ public class Mandelbrot
           pts_y.addElement(y);
           //System.out.println("y se rempli");
         }
-        else          // on stocke les points hors de l'ensemble
+        else          // on stocke les points hors de l'ensemble ainsi que la couleur du pixel
         {
           pts_out_x.addElement(x);
           pts_out_y.addElement(y);
+
+          Color myColor = new Color(i*r/n, i*g/n, i*b/n);
+          pts_out_color.addElement(myColor);
         }
       }
   }
 
 
-
+  // DESSIN DE LA FRACTALE EN NOIR ET BLANC SUR UNE IMAGE
+  // on dessine un pixel en noir si ses coordonnées appartiennent à l'ensemble
+  // le reste est en blanc
   public BufferedImage draw_WB(int width, int height)
   {
     BufferedImage WB_fractal = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -100,22 +98,24 @@ public class Mandelbrot
   }
 
 
-
-  public BufferedImage draw_Color(int width, int height, int r, int g, int b)
+  // DESSIN DE LA FRACTALE EN NOIR AVEC UN DEGRADE DE COULEUR
+  // on dessine un pixel en noir si ses coordonnées appartiennent à l'ensemble
+  // le reste forme un dégradé de couleur (choisies par l'utilisateur)
+  public BufferedImage draw_Color(int width, int height)
   {
     BufferedImage Color_fractal = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-    Graphics g = Color_fractal.getGraphics();
-    g.setColor(Color.white);                // Couleur de fond
-    g.fillRect(0, 0, width, height);        // On dessine le fond
+    Graphics gr = Color_fractal.getGraphics();
+    gr.setColor(Color.white);                // Couleur de fond
+    gr.fillRect(0, 0, width, height);        // On dessine le fond
 
     for(int coords = 0; coords < pts_x.size(); coords++)
       Color_fractal.setRGB(pts_x.elementAt(coords), pts_y.elementAt(coords), 00);
 
     for(int outCoord = 0; outCoord < pts_out_x.size(); outCoord++)
-    {
-      
-      Color_fractal.setRGB(pts_out_x.elementAt(outCoord), pts_out_y.elementAt(outCoord), 255);
-    }
+      {
+        int rgb = pts_out_color.elementAt(outCoord).getRGB();
+        Color_fractal.setRGB(pts_out_x.elementAt(outCoord), pts_out_y.elementAt(outCoord), rgb);
+      }
 
     return Color_fractal;
   }

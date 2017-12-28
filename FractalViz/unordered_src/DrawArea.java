@@ -2,9 +2,6 @@ import java.util.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
-import java.io.File;
-import javax.imageio.ImageIO;
-import java.io.IOException;
 
 
 public class DrawArea extends JPanel
@@ -13,7 +10,7 @@ public class DrawArea extends JPanel
 
   public DrawArea(BufferedImage myFract)
   {
-    setPreferredSize(new Dimension(300,300) );
+    setPreferredSize(new Dimension(690, 640) );
     img = new BufferedImage(myFract.getWidth(), myFract.getHeight(), BufferedImage.TYPE_INT_RGB );
     setImg(myFract);
   }
@@ -24,6 +21,7 @@ public class DrawArea extends JPanel
     img = new_img;
   }
 
+
   public BufferedImage getImg()
   {
     return img;
@@ -32,7 +30,12 @@ public class DrawArea extends JPanel
 
   public void paint(Graphics g)
   {
-    //BufferedImage drawImg = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB );
-	  g.drawImage(img, 0, 0, this);
+	  g.drawImage(getImg(), 0, 0, this);
+  }
+
+  // METHODE APPELEE POUR REDESSINER LE CONTENU
+  public void repaint(Graphics g)
+  {
+    paint(g);
   }
 }

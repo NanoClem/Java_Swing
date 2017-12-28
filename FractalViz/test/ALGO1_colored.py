@@ -13,7 +13,7 @@ ymin          = -1.2
 ymax          = 1.2
 
 zoom          = 100   #eval(input())
-iteration_max = 50
+iteration_max = 20
 
 img_x         = int( (xmax - xmin) * zoom )
 img_y         = int( (ymax - ymin) * zoom )
