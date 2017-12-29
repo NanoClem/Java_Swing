@@ -32,7 +32,7 @@ public class Complex
   {this.imagin = imagin;}
 
 
-  public void conjugate()   //conjugué du nombre complexe
+  public void getConjugate()   //conjugué du nombre complexe
   {imagin = -imagin;}
 
 

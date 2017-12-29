@@ -1,3 +1,4 @@
+package packages.component.container;
 import java.util.*;
 import java.io.*;
 import java.awt.*;
@@ -7,6 +8,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import packages.component.container.DrawArea;
+import packages.component.calculation.Mandelbrot;
 
 
 public class GraphicWindow extends JFrame

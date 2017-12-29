@@ -1,4 +1,4 @@
-source : http://sdz.tdct.org/sdz/dessiner-la-fractale-de-mandelbrot.html
+﻿source : http://sdz.tdct.org/sdz/dessiner-la-fractale-de-mandelbrot.html
 
 
 # PRINCIPE :
@@ -6,11 +6,11 @@ source : http://sdz.tdct.org/sdz/dessiner-la-fractale-de-mandelbrot.html
 # calculer le zoom en fonction de ces deux paramétres
 
 # AVANTAGES :
-# L'utilisateur choisi lui-méme la taille de l'image
+# on peut choisir la taille de l'image
 # aucun risque d'avoir une image trop grande ou trop petite
 
 # INCONVéNIENTS
-# sauf recourt é la premiére technique, l'image est souvent disproportionnée
+# sauf recourt à la premiére technique, l'image est souvent disproportionnée
 
 
 

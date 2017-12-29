@@ -1,10 +1,12 @@
+package packages.component.calculation;
 import java.util.*;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.lang.Math;
-//import Complex;
+import packages.component.calculation.Complex;
+
 
 public class Mandelbrot
 {
@@ -40,17 +42,17 @@ public class Mandelbrot
  // - de la couleur des pixels représentés par chaque point en dehors de l'ensemble
   public void calcPts(int img_x, int img_y, double xmin, double xmax, double ymin, double ymax, int n, int r, int g, int b)
   {
-    double zoom_x             = (double) img_x / (xmax-xmin);
-    double zoom_y             = (double) img_y / (ymax-ymin);
-    double c_r, c_i, z_r, z_i;
-    c_r = 0;    c_i = 0;
+    double zoom_x = (double) img_x / (xmax-xmin);
+    double zoom_y = (double) img_y / (ymax-ymin);
+    double c_r = c_i = 0,
+    double z_r, z_i;
 
     for(int x = 0; x < img_x; x++)
       for(int y = 0; y < img_y; y++)
       {
         c_r = (double) x / zoom_x + xmin;
         c_i = (double) y / zoom_y + ymin;
-		    z_r = 0;    z_i = 0;
+		    z_r = z_i = 0;
         int i = 0;
 
         do
@@ -65,9 +67,7 @@ public class Mandelbrot
         if(i == n)    // on stocke les points dans l'ensemble
         {
           pts_x.addElement(x);
-          //System.out.println("x se rempli");
           pts_y.addElement(y);
-          //System.out.println("y se rempli");
         }
         else          // on stocke les points hors de l'ensemble ainsi que la couleur du pixel
         {
