@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import java.lang.Math;
-import packages.component.calculation.Complex;
 
 
 public class Mandelbrot
@@ -17,6 +16,7 @@ public class Mandelbrot
   private Vector<Integer> pts_out_y;        // n'appartenant pas à l'ensemble (pour le dessin en couleur)
 
   private Vector<Color> pts_out_color;
+
 
 
   public Mandelbrot(int img_x, int img_y, int iteration, int r, int g, int b)
@@ -32,7 +32,6 @@ public class Mandelbrot
     double ymax        = 1.2;
 
     calcPts(img_x, img_y, xmin, xmax, ymin, ymax, iteration, r, g, b);
-    //System.out.println( pts_x.size() + " " + pts_x.isEmpty() );
   }
 
 
@@ -44,7 +43,8 @@ public class Mandelbrot
   {
     double zoom_x = (double) img_x / (xmax-xmin);
     double zoom_y = (double) img_y / (ymax-ymin);
-    double c_r = c_i = 0,
+    double c_r = 0;
+	double c_i = 0;
     double z_r, z_i;
 
     for(int x = 0; x < img_x; x++)
@@ -74,7 +74,7 @@ public class Mandelbrot
           pts_out_x.addElement(x);
           pts_out_y.addElement(y);
 
-          Color myColor = new Color(i*r/n, i*g/n, i*b/n);
+          Color myColor = new Color(i*r/n, i*g/n, i*b/n);   // la couleur est déterminée en fonction du nombre d'itération pour y parvenir
           pts_out_color.addElement(myColor);
         }
       }

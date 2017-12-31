@@ -17,9 +17,9 @@ public class GraphicWindow extends JFrame
 {
   DrawArea drawPane;
 
-  public GraphicWindow(String s) throws Exception
+  public GraphicWindow(String title) throws Exception
   {
-    super(s);
+    super(title);
     setSize(700,700);
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
