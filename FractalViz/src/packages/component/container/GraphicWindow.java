@@ -13,9 +13,11 @@ import packages.component.calculation.Mandelbrot;
 
 
 public class GraphicWindow extends JFrame
-                           implements ActionListener
+                           implements ActionListener, MouseListener, MouseWheelListener
 {
-  DrawArea drawPane;
+  public DrawArea drawPane;      // la zone de dessin
+  public double zoom = 1d;;      // valeur du zoom
+
 
   public GraphicWindow(String title) throws Exception
   {
@@ -25,6 +27,7 @@ public class GraphicWindow extends JFrame
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLocationRelativeTo(null);
     setAlwaysOnTop(true);
+
 
     //Nouvelle barre de menu
     JMenuBar menuBar = new JMenuBar();
@@ -143,8 +146,38 @@ public class GraphicWindow extends JFrame
   }
 
 
+  // SURCHARGE DES METHODES DE MOUSELISTENER
+  public void mousePressed(MouseEvent e) {}
+  public void mouseClicked(MouseEvent e) {}
+  public void mouseEntered(MouseEvent e) {}
+  public void mouseExited(MouseEvent e) {}
+  public void mouseReleased(MouseEvent e) {}
 
-  // ACTIONS
+
+
+  // ACTION LORSQUE L'ON ZOOME AVEC LA MOLETTE DE LA SOURIS
+  public void mouseWheelMoved(MouseWheelEvent e)
+  {
+    int wheelRotation = e.getWheelRotation();
+    if(zoom > 1)
+      zoom += wheelRotation;
+    else if(zoom == 1)
+      zoom = (wheelRotation == 1? zoom + wheelRotation:0.5);
+    else if(zoom < 1)
+      zoom /= (wheelRotation * 2);
+
+    System.out.println("mouvement de la molette");
+    int NewWidth  = (int)(drawPane.getImg().getWidth() * zoom);
+    int NewHeight = (int)(drawPane.getImg().getHeight() * zoom);
+
+    BufferedImage zoomedImg = new BufferedImage(NewWidth, NewHeight, BufferedImage.SCALE_FAST);
+    drawPane.setImg(zoomedImg);
+    drawPane.repaint();
+  }
+
+
+
+  // ACTIONS DU MENU
   public void actionPerformed(ActionEvent event)
   {
     // ACTION LORSQUE L'ON CLIQUE SUR "Quitter"
@@ -159,6 +192,7 @@ public class GraphicWindow extends JFrame
         System.exit(0);                                            // on quitte le programme
     }
 
+
     // ACTION POUR DESSINER LA FRACTALE EN NOIR ET BLANC
     if ( event.getActionCommand().equals("drawWB") )
     {
@@ -171,8 +205,10 @@ public class GraphicWindow extends JFrame
       // LA FENÊTRE DE DESSIN
       getContentPane().removeAll();                                                           // On éfface le contenu pour éviter la superposition des images
       drawPane = new DrawArea(myFract.draw_WB(width, height));
-      getContentPane().add(drawPane);
+      //ZOOM AVEC LA MOLETTE
+      drawPane.addMouseWheelListener(this);
 
+      getContentPane().add(drawPane);
       setVisible(true);
     }
 

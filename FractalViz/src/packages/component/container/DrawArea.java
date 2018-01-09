@@ -1,6 +1,7 @@
 package packages.component.container;
 import java.util.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
@@ -33,6 +34,7 @@ public class DrawArea extends JPanel
   {
 	  g.drawImage(getImg(), 0, 0, this);
   }
+
 
   // METHODE APPELEE POUR REDESSINER LE CONTENU
   public void repaint(Graphics g)
