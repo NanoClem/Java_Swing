@@ -16,7 +16,7 @@ public class GraphicWindow extends JFrame
                            implements ActionListener, MouseListener, MouseWheelListener
 {
   public DrawArea drawPane;      // la zone de dessin
-  public double zoom = 1d;;      // valeur du zoom
+  public double zoom = 1d;       // valeur du zoom
 
 
   public GraphicWindow(String title) throws Exception
