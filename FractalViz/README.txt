@@ -1,7 +1,8 @@
-# Authors : DECOOPMAN Clement, DAMIENS Lucas
+## Authors : 
+DECOOPMAN Clement, DAMIENS Lucas
 
 
-# CONTEXT :
+## CONTEXT :
 
 - The application display a Mandelbrot fractal and allows to view it in a graphic interface.
 - The user is able to :
@@ -12,7 +13,7 @@
 	- save the result as a png and load a picture in the area
 
 
-# PROJECT STRUCTURE :
+## PROJECT STRUCTURE :
 
 FractalViz
 |
